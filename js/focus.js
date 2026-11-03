@@ -213,7 +213,7 @@ function openShutdown(){
 
 /* Receipts lives next to Docket only inside Workshop (same data folder). On its own site there is nothing to send to. */
 const receiptsHere = () => embedded;
-const KIND_LABEL = {win: 'Win', growth: 'Growth', note: 'Note'};
+const KIND_LABEL = {win: 'Win', growth: 'Learned', note: 'Note'};   // Receipts' own labels for receipts about you
 function receiptRow(t, d){
   const h = F.receiptOffer(log, t.id, d), kind = h && h.payload ? h.payload.kind : 'win';
   return `<div class="sd-rcpt"><label class="chk"><input type="checkbox" data-rcpt="${t.id}"${h ? ' checked' : ''} aria-label="Keep as a receipt"></label>
