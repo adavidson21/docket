@@ -18,7 +18,9 @@ import { dayInit, setDate } from './day-view.js';
 import { maybeOnboard, openTour, tourInit } from './onboarding.js';
 import { dp, recurTick } from './dayplan.js';
 import * as focusModel from './focus-model.js';
-import { focusLog, fstore, openShutdown } from './focus.js';
+import { focusCommand, focusLog, fstore, openShutdown } from './focus.js';
+import { toggleDone } from './actions.js';
+import { activeTask } from './focus.js';
 import * as dayModel from './dayplan-model.js';
 import { offers, watchSender } from './offers.js';
 import { boot, dstore } from './storage.js';
@@ -51,7 +53,12 @@ ready.then(ws => {
     const V = {today: 'today', triage: 'triage', prioritize: null, list: 'rank', eisenhower: 'eisen', 'value-effort': 've', done: 'archive', people: 'people', reports: 'reports'};
     if (Object.hasOwn(V, path)) setView(V[path] || state.lens);
   }));
-  ws.on('command', ({id}) => {
+  ws.on('command', ({id, text}) => {
+    // The running task's buttons in Workshop's top bar (focus.js shellStatus).
+    if (/^focus-/.test(id)) loaded.then(() => {
+      if (id === 'focus-done'){ const t = activeTask(); if (t) toggleDone(t.id); }
+      else focusCommand(id, text);
+    });
     if (id === 'add-task') openCmd();
     if (id === 'sync-ado') adoSync(true);
     if (id === 'shortcuts') showHelp();

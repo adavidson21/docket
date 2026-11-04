@@ -848,3 +848,7 @@ button.sig.warn:hover{background:color-mix(in srgb,var(--danger) 18%,var(--surfa
 body.focusing .phead{padding-top:1rem}
 .row.active{background:color-mix(in srgb,var(--accent) 8%,transparent)}
 @media (max-width:759px){ .nowbar{padding:.5rem .75rem} .nowbar .nact{justify-content:flex-start} body.focusing .phead{padding-top:.6rem} }
+
+/* Inside Workshop the running task is in the shell's top bar (on every app), so Docket's own band steps aside. */
+body.shellfocus .nowbar{display:none}
+body.shellfocus.focusing .phead{padding-top:1.6rem}
