@@ -7,13 +7,13 @@ import { commit, state, setState, sanitize, migrateTask, triageQueue, ui } from 
 import { parseQuick } from './quick-add.js';
 import { render, capacityCut, setView } from './render.js';
 import { buildWorkbook, exportXlsx, parseWorkbook, doImport } from './excel.js';
-import { buildReportsWorkbook, rp, rpCompute, rpInit, rpRefresh } from './reports.js';
 import { adoApply, adoDetect, adoInit, adoPick, adoReview, adoSync, adoSchedule, setAdo } from './ado.js';
 import { eng, engCheck, engSchedule } from './eng.js';
 import { applySide } from './events.js';
 import { downloadBackup, importFile, store } from './storage.js';
 import { openCmd } from './command-bar.js';
 import { drawerInit, openDrawer } from './drawer.js';
+import { pasteInit } from './paste.js';
 import { dayInit, setDate } from './day-view.js';
 import { maybeOnboard, openTour, tourInit } from './onboarding.js';
 import { dp, recurTick } from './dayplan.js';
@@ -50,7 +50,9 @@ ready.then(ws => {
     // #/prioritizer/shutdown: wrap up the day (Workshop Home's Wrap up card links here).
     if (path === 'shutdown') openShutdown();
     // #/prioritizer/<view>: Workshop Home's tiles and the palette open a view directly.
-    const V = {today: 'today', triage: 'triage', prioritize: null, list: 'rank', eisenhower: 'eisen', 'value-effort': 've', done: 'archive', people: 'people', reports: 'reports'};
+    const V = {today: 'today', triage: 'triage', prioritize: null, list: 'rank', eisenhower: 'eisen', 'value-effort': 've', done: 'archive', people: 'people'};
+    // Team reports moved to Runway (Docket 4.18.0); an old link opens them there.
+    if (path === 'reports') ws.open({app: 'runway', path: 'reports'}).catch(() => {});
     if (Object.hasOwn(V, path)) setView(V[path] || state.lens);
   }));
   ws.on('command', ({id, text}) => {
@@ -73,17 +75,17 @@ ready.then(ws => {
 window.__prioritizer = {
   get state(){ return state; }, set state(s){ setState(s); },
   adoApply, adoPick, adoReview, adoSync, ui, sanitize, migrateTask, urgency, score, tier, isStale,
-  eKey, vKey, parseQuick, capacityCut, buildWorkbook, buildReportsWorkbook, rpCompute, rpRefresh,
-  get rp(){ return rp; }, parseWorkbook, doImport, render, commit, triageQueue,
+  eKey, vKey, parseQuick, capacityCut, buildWorkbook,
+  parseWorkbook, doImport, render, commit, triageQueue,
   engCheck, get eng(){ return eng; }, exportXlsx, downloadBackup, importFile,
   // Resolves after pending saves and updates from other windows have run.
   saved: () => Promise.all([store ? store.idle() : null, dstore ? dstore.idle() : null, fstore ? fstore.idle() : null]), get store(){ return store; },
   get dp(){ return dp; }, recurTick, openTour, get dstore(){ return dstore; }, dayModel, offers, watchSender,
-  get focusLog(){ return focusLog; }, get fstore(){ return fstore; }, focusModel, openShutdown
+  get focusLog(){ return focusLog; }, get fstore(){ return fstore; }, focusModel, openShutdown, openDrawer
 };
 
-drawerInit(); dayInit(); tourInit();
-adoInit(); rpInit();
+drawerInit(); dayInit(); tourInit(); pasteInit();
+adoInit();
 applySide();
 // Load the saved board (Workshop's data folder, or this browser in browser mode) before the first render.
 await loaded;

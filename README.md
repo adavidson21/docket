@@ -36,7 +36,6 @@ Your manual rank always has the final say. **Suggest order** previews a score-ba
 - **People:** one card per person, split into "Waiting on them" and "To discuss or do". Handy as a 1:1 agenda. Anyone can be a card: teammates, other teams, vendors. Inside Workshop, people from Workshop's People (in Settings) who have no card yet show under the cards to add in one click, and are suggested in a task's People field.
 - **Done** (a tab in Prioritize, next to List, Eisenhower and Value / Effort): a weekly recap you can copy into a status update, with how your work split across quadrants, plus finished and won't-do tasks.
 - **Day:** time blocks for today (or any day), built from your sprint. Slot tasks into blocks, and rearrange when the day goes sideways. See below.
-- **Reports:** team-wide ADO reports (priority churn, other teams' work, sprint carryover and scope churn, load, aging) with an Excel export. See below.
 
 The **Lists** in the sidebar (All lists, a list, or a section) filter every view. All lists shows once you have more than one.
 
@@ -49,7 +48,7 @@ Plan a day as a list of blocks (Deep focus, Meetings, Admin, and so on) and slot
 - **Sprint day N** is the Nth working day of the sprint. Weekends and holidays show as off and take no number, so a sprint with a holiday has 9 days. Dates before the start date work too.
 - **Sprint id** is `<year>-<n>`: the nth sprint that starts in that calendar year, counted from the start date. The header says, for example, "Sprint 2026-22, day 3 of 10".
 
-**Templates:** a template is an ordered list of blocks for some sprint days (`2-8`, or `1, 3, 5`), or for **Last day**, which always matches the final working day of a sprint, even when a holiday shortens it. A Last day template wins over a numbered one on that day, so "days 2 to 10" and "Last day" never collide. Two numbered templates on the same day, or two Last day templates, show an error in settings and can't be saved. A day no template covers starts empty. Each block has a name, a kind (free text like focus or meetings), a color, and optionally a rough start time, a length in minutes, and a capacity in effort points (the same points as tasks: XS 1 to XL 8). Times are labels, never a grid. Starting a sprint can add three example templates (Planning day, Sprint day, Last day) to edit.
+**Templates:** a template is an ordered list of blocks for some sprint days (`2-8`, or `1, 3, 5`), or for **Last day**, which always matches the final working day of a sprint, even when a holiday shortens it. A Last day template wins over a numbered one on that day, so "days 2 to 10" and "Last day" never collide. Two numbered templates on the same day, or two Last day templates, show an error in settings and can't be saved. A day no template covers starts empty. Each block has a name, a kind (free text like focus or meetings), a color, and optionally a rough start time, a length in minutes, and a capacity in effort points (the same points as tasks: XS 1 to XL 8). Times are labels, never a grid, and show on a 12-hour clock (9:30 AM). Type them however you like: `9:30a`, `930`, `9pm` or `21:00`; without AM or PM, 1 to 6 means afternoon (`1:30` is 1:30 PM). Starting a sprint can add three example templates (Planning day, Sprint day, Last day) to edit.
 
 **Planning a day:**
 
@@ -68,6 +67,8 @@ Plan a day as a list of blocks (Deep focus, Meetings, Admin, and so on) and slot
 - **Shift the rest of the day** moves the rough times of the remaining blocks by 15, 30 or 60 minutes, back 15, or any amount. From a block's menu it shifts that block and the ones after it.
 - **Undo and redo** (`Ctrl+Z`, `Ctrl+Shift+Z` or `Ctrl+Y`, or the arrows in the header) cover every change to a day, per window, up to 50 steps. Completing a task is not part of it; click the check again to reopen.
 - **Carry over:** opening a working day shows unfinished tasks planned on the previous working day (skipping weekends and holidays). **Same blocks today** puts each in today's block with the same name, then the same kind, then the first open block. **Put in the tray** lists them first under Not planned.
+
+**Repeating tasks (every day or week):** for things like checking logs every morning, open a task and set **Repeat** to Every workday, Every day or every week on that weekday, with an optional time (shown on the task, like 9:15 AM). Each matching day, a fresh copy is added that morning, due that day and on your Today list, so you check it off daily; the task you set it on counts as today's. Every workday uses your sprint's workdays and skips holidays; no sprint is needed. A copy you didn't finish is closed as won't do when the next one is added, so they don't pile up. With a time and the Day view set up, the copy goes into the block on at that time. **More** (or the gear's settings, under **Repeating tasks**) edits them alongside the every-sprint ones: the **Repeats** menu has every day, every week and every sprint. **Doesn't repeat** stops new copies and keeps the task.
 
 **Every sprint:** for things you do once a sprint (refinement, a release, a focus group), add them under **Every sprint** in the gear's settings: a title, the sprint day it's due on (shown with its weekday, like "Day 4 (Mon wk 2)", or Last day), a value (Low by default), effort and list. Each sprint, a new task is added on its first working day (or as soon as Docket opens after that), due on that day, at the bottom of your rank, so it's visible without taking over and rises as the due date gets close. Finishing one doesn't touch the next sprint's. A sprint whose due day has already passed is skipped. Deleting this sprint's task keeps it gone until the next sprint, and **Pause** stops new ones. With **Plan into** set to a block kind (like meetings), the task is also put in the first open block of that kind on its due day (that day's first open block if none matches). That happens once, when the task is made, so moving or unplanning it sticks. These tasks show an **Every sprint** chip.
 
@@ -108,9 +109,11 @@ Press `N` or `/` anywhere. On its own, `Ctrl+K` (`Cmd+K` on a Mac) works too; in
 
 Example: `Review design doc @Teammate !3 ~s ^fri #eng`
 
+**Pasting from ADO:** paste a work item from ADO's **Copy to clipboard** (`Issue 12345: Title`) or its URL into the add box, a person's add box, or a task's title, and the task keeps the link: its row gets an ADO chip that opens the item, and its details say **Open Issue #12345 in ADO**. A bare URL starts the title as `ADO 12345: ` for you to finish. Pasted into notes, the URL is kept in the text. If ADO sync later finds the item assigned to you, it takes the task over (no duplicate); until then sync leaves it alone, so an item assigned to someone else is never closed as reassigned. Pasting an item already open on your board offers to open that task instead.
+
 ## Keyboard
 
-`1` to `6` switch views in sidebar order (Today, Day, Triage, Prioritize, People, Reports), `J`/`K` move through tasks, `Enter` opens details, `X` completes, `T` toggles Today, `S` starts or pauses the selected task, `I` logs an interruption, `Alt+Up`/`Alt+Down` reorder, `Esc` closes. In Triage: `1` to `4` value, `Q W E R T` effort, `D` due, `U` urgent, `Space` Today, `Enter` save and next (also from the title, or `Ctrl+Enter` from notes), `S` skip, `0` won't do. Press `?` for the full list.
+`1` to `5` switch views in sidebar order (Today, Day, Triage, Prioritize, People), `J`/`K` move through tasks, `Enter` opens details, `X` completes, `T` toggles Today, `S` starts or pauses the selected task, `I` logs an interruption, `Alt+Up`/`Alt+Down` reorder, `Esc` closes. In Triage: `1` to `4` value, `Q W E R T` effort, `D` due, `U` urgent, `Space` Today, `Enter` save and next (also from the title, or `Ctrl+Enter` from notes), `S` skip, `0` won't do. Press `?` for the full list.
 
 ## Themes
 
@@ -186,28 +189,7 @@ A Blocking PR where every other required reviewer has already approved shows **L
 
 ## Reports
 
-Team-wide, read-only reports from ADO for capacity conversations. Open **Reports** in the sidebar (shortcut `6`).
-
-**Team profile (once):** area paths your team owns (everything under each counts) and your people (email or exact ADO display name). Use both to see work your people do for other teams. It saves on this device. Change it with the dots button. Inside Workshop, **Use my team from Workshop** fills the people from everyone marked as on your team in Workshop's People.
-
-**Reports:**
-
-| Report | What it shows |
-| --- | --- |
-| Priority churn | Every Priority change in the window, per week, who made them, and escalations (raised to P1 from lower) with how long the item sat first |
-| Other teams' work | Items assigned to your people that live outside your area paths, by owning area, flagged when escalated |
-| Sprint carryover | Items moved between sprints, how many times, their path, and open items still sitting in a finished sprint |
-| Sprint scope churn | Items added, created or removed after a sprint started (the first day counts as planning), plus items pulled onto or off your team |
-| Load by person | Open items per person by priority, hours left and oldest item; profile people with nothing open still show |
-| Aging and throughput | Open P1/P2 work by age, and items closed per week against new high-priority work per week |
-
-Pick a window (14 to 180 days) and **Refresh**. The last pull is cached, so Reports opens instantly next time.
-
-**Export** saves `team-reports-<date>.xlsx`: the Workload tracker with every report pre-filled from ADO, a Summary tab of formulas, and blank columns for what ADO can't see (capacity, fire drill and rework hours, why other-team work happened, Teams evidence, risk flags).
-
-**How it works:** Reports makes one read-only `dataset` request, the same way ADO sync connects: through Workshop's ADO connector (its `dataset` action) when the connector is on, otherwise through the helper (1.2.0 or later, `POST /dataset`). It returns the team's work items, their priority, sprint, assignment and state changes in the window, and sprint dates. Every report is computed in the app from that pull, so adding a report doesn't need a connector or helper change. Only collections already set up in the connector or in `ado-helper.json` can be queried. Work Items (Read) is enough.
-
-With the connector, the report settings are in the ADO connector's settings in Workshop **Settings** (priorities that count as high, escalation priority and the rest). With the helper, they are in `ado-helper.json`: `high_priorities` (default 1 and 2), `escalation_priority` (default 1), `bug_types`, `workload_types` (empty means the same as `types`), `effort_fields` (hours count Remaining Work only), and `workload_max_items` (how many changed items get their history read, default 1500).
+Team reports moved to **Runway** in Docket 4.18.0 (Runway's roadmap list, **Team reports**). They read your team's ADO history through Workshop's ADO connector. Inside Workshop, the ADO menu's **Team reports in Runway** and an old `reports` link open them there. Runway takes your team profile from Docket the first time it opens in the same browser. The helper's `POST /dataset` is no longer used by Docket.
 
 ## eng-agents stages
 
@@ -234,9 +216,9 @@ No build step. `index.html` is the page; `app.json` describes the app to Worksho
 | `quick-add.js`, `actions.js` | Quick add syntax; task actions |
 | `render.js`, `views.js` | Frame, sidebar, header, rows; each view |
 | `drawer.js`, `overlays.js`, `command-bar.js` | Task details; modal, menus, toast; the command bar |
-| `excel.js`, `kv.js` | Excel export and import; a small browser cache for Reports |
+| `excel.js` | Excel export and import |
 | `drag-drop.js`, `people.js`, `events.js` | Drag and drop; people; global handlers and tooltips |
-| `ado.js`, `reports.js`, `eng.js` | ADO sync; team reports; eng-agents stages |
+| `ado.js`, `eng.js` | ADO sync; eng-agents stages |
 | `dayplan-model.js`, `dayplan-format.js` | The Day view's model: sprint math, templates, every change to a day, undo; and how it is stored (pure, tested in `test/dayplan.test.mjs`) |
 | `onboarding.js` | The first-run tour |
 | `focus-model.js`, `focus-format.js` | Focus: the active task, the day's activity log, breadcrumbs and switch counts; and how the log is stored (pure, tested in `test/focus.test.mjs`) |
