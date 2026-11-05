@@ -171,6 +171,8 @@ async function downloadBackup(){
     if (dstore) await dstore.idle();
     if (fstore) await fstore.idle();
     const bundle = await ws.data.export({apps: ['prioritizer']});
+    // The summary is made from the rest (summary.js), so a backup leaves it out; it is written again on load.
+    bundle.collections = bundle.collections.filter(c => c.collection !== 'summary');
     const how = await saveFile(`workshop-${todayStr()}.json`, JSON.stringify(bundle, null, 2) + '\n', 'application/json');
     if (how !== 'canceled') toast(how === 'shared' ? 'Backup saved' : 'Backup downloaded');
   } catch (e){ toast('Could not make a backup.'); }
