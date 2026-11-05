@@ -15,11 +15,11 @@
    capture and the Dispatch hub send accepted tasks (kind 'task', accepted: true; Workshop docs/hub.md). */
 const SENDERS = { home: 'Home', agents: 'Dispatch' };
 /* Who sends Docket offers, from the manifests on this Workshop site (ws.apps.list(); Workshop docs/handoffs.md,
-   Senders): every app whose handoffs.sends lists prioritizer, as {id: name}. The built-in list when there is no
-   app list (Docket on its own site) or no app names Docket. */
+   Senders): every app whose handoffs.sends lists prioritizer, as {id: name}, added to the built-in list. Reading
+   an app that is not there finds no offers, so the built-in list only keeps senders whose manifest does not say. */
 function sendersFrom(apps, self = 'prioritizer', fallback = SENDERS){
   const found = (Array.isArray(apps) ? apps : []).filter(a => a && a.id !== self && a.handoffs && Array.isArray(a.handoffs.sends) && a.handoffs.sends.includes(self));
-  return found.length ? Object.fromEntries(found.map(a => [a.id, a.name || a.id])) : Object.assign({}, fallback);
+  return Object.assign({}, fallback, Object.fromEntries(found.map(a => [a.id, a.name || a.id])));
 }
 const HANDLED_MAX = 200;
 const HANDOFF_VERSION = 1;

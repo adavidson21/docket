@@ -179,6 +179,7 @@ test('sendersFrom: senders come from manifests, with the built-in list as the fa
     { id: 'newapp', name: 'New app', handoffs: { sends: ['prioritizer'] } }
   ];
   assert.deepEqual(sendersFrom(apps), { home: 'Home', agents: 'Dispatch', newapp: 'New app' });
+  assert.deepEqual(sendersFrom([{ id: 'other', name: 'Other', handoffs: { sends: ['prioritizer'] } }]), { home: 'Home', agents: 'Dispatch', other: 'Other' }, 'added to the built-in list');
   assert.deepEqual(sendersFrom([]), SENDERS);
   assert.deepEqual(sendersFrom(null), SENDERS);
 });
