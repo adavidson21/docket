@@ -4,7 +4,7 @@ import { EFFORTS, EQ, ICON, POINTS, VALUE, VQ } from './constants.js';
 import { engDrawer, engOpen, engStart } from './eng.js';
 import { ageDays, eKey, fmtScore, impliedDue, isStale, score, vKey } from './model.js';
 import { app, drawer, main, render, sel, setSel } from './render.js';
-import { commit, findTask, isWaiting, orderedLists, save, scopeOpen, state } from './state.js';
+import { commit, findTask, isWaiting, orderedLists, save, scopeOpen } from './state.js';
 import { D, getDirectory, mentionOf } from './directory-model.js';
 import { assign } from './directory.js';
 import { esc, fmtDay, fmtLong, isDate, todayStr } from './util.js';
