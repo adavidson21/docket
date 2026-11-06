@@ -9,6 +9,7 @@
      lists    targets for capture: "task" (Home quick capture, the Dispatch hub)
      people   open and waiting tasks per person and group in Workshop's people directory, a person's through
               their groups too (Rapport's 1:1 prep)
+     tasks    the 50 highest ranked open tasks, titles and ids (Notes' [[ picker, to link a note to a task)
    Days past the last one are stale: readers show nothing for them until Docket opens again. */
 import { WINDOW } from './constants.js';
 import { isTriaged } from './model.js';
@@ -65,6 +66,17 @@ export function boardCard(board, today, dir = D.EMPTY){
   return {id: 'board', kind: 'board', days: Object.fromEntries(horizon(today).map(d => [d, boardDay(board, d)])), upNext, team};
 }
 
+/* ---------- open tasks, for links from Notes ----------
+   Notes' [[ picker offers these so a note can link to a task without knowing its id (plan 1). Titles and ids only,
+   the TASKS highest ranked; route opens the task. */
+const TASKS = 50;
+export function tasksCard(board){
+  const known = new Set(board.lists.map(l => l.id));
+  const open = board.tasks.filter(t => t && known.has(t.listId) && !t.done).sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0));
+  return {id: 'tasks', kind: 'list', title: 'Open tasks', count: open.length,
+    rows: open.slice(0, TASKS).map(t => ({id: t.id, title: str(t.title, 200) || 'Untitled', route: `task/${t.id}`}))};
+}
+
 /* ---------- day plan and Wrap up ---------- */
 export function dayBlocks(dp, date, tasksById){
   if (!dp || !dp.sprint || !dp.sprint.anchor) return [];
@@ -117,5 +129,5 @@ export function peopleCard(board, dir = D.EMPTY){
 /** Every card, without updatedAt (the writer stamps them). board: {lists, tasks}; dir: the people directory;
     dp: the day plan; log: the focus log ({days, handoffs}); today: YYYY-MM-DD. */
 export function buildSummary({board, dir = D.EMPTY, dp, log, today}){
-  return [boardCard(board, today, dir), dayCard(dp, log, board, today), listsCard(board), peopleCard(board, dir)];
+  return [boardCard(board, today, dir), dayCard(dp, log, board, today), listsCard(board), peopleCard(board, dir), tasksCard(board)];
 }
