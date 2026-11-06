@@ -35,7 +35,9 @@ export function boardDay(board, date){
   return {
     total: all.length,
     open: open.length,
-    focus: {total: focus.length, done: focus.filter(t => t.done).length},
+    // tasks: the day's Today tasks by rank, for Notes' daily note ({{docket}}); titles and ids only.
+    focus: {total: focus.length, done: focus.filter(t => t.done).length,
+      tasks: [...focus].sort((a, b) => (a.rank ?? 0) - (b.rank ?? 0)).slice(0, 10).map(t => ({id: t.id, title: str(t.title, 300), done: !!t.done}))},
     triage: open.filter(t => !isTriaged(t) || isStaleOn(t, date)).length,
     overdue: open.filter(t => isDate(t.due) && t.due < date).length,
     dueWeek: open.filter(t => isDate(t.due) && t.due >= date && t.due <= weekEnd).length

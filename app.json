@@ -55,7 +55,8 @@
   ],
   "handoffs": {
     "sends": [
-      "receipts"
+      "receipts",
+      "notes"
     ]
   },
   "capture": [
