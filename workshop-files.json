@@ -1,6 +1,6 @@
 {
   "repo": "adavidson21/workshop",
-  "commit": "82aef39fc0c11f12abb0be19d9c656567f3cada0",
+  "commit": "9d08303efaa7fda7d50b437346b529dfd309cf40",
   "files": {
     "icons/app-192.png": "icons/app-192.png",
     "icons/app-512.png": "icons/app-512.png",
@@ -9,6 +9,7 @@
     "icons/favicon-32.png": "icons/favicon-32.png",
     "icons/favicon.svg": "icons/favicon.svg",
     "scripts/sync-workshop.mjs": "scripts/sync-workshop.mjs",
+    "shared/app-settings.js": "shared/app-settings.js",
     "shared/app-sw.js": "shared/app-sw.js",
     "shared/device-fs.js": "shared/device-fs.js",
     "shared/fonts/dm-mono-latin-400-normal.woff2": "shared/fonts/dm-mono-latin-400-normal.woff2",
@@ -52,7 +53,7 @@
     "test/workshop/schemas/summary-card.schema.json": "docs/schemas/summary-card.schema.json",
     "test/workshop/schemas/team.schema.json": "docs/schemas/team.schema.json"
   },
-  "bundle": "2.6.0",
+  "bundle": "2.7.0",
   "sha256": {
     "icons/app-192.png": "99f385aecd24bd43083c191b9656b4b9e2ef6a0da0c74a18eeb13f4bff5001c0",
     "icons/app-512.png": "e423fc135bd9484832e1110005d4169e3ea1bf56791088a6c7ab21aa9ead1f7a",
@@ -92,9 +93,9 @@
     "shared/vendor/LICENSE-SheetJS.txt": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64",
     "shared/vendor/README.md": "96aa92ed51dfe90ad089c66674bd034c8d42f10107745c4ff9898d99fbba17c9",
     "shared/vendor/xlsx.full.min.js": "cc015130aa8521e7f088f88898eba949ccdcbfb38df0bd129b44b7273c3a6f41",
-    "shared/workshop-sdk.js": "d71875fc53fc9744f8deae31f0eb317524d47d9c448458cfa4fdb609d445bbd3",
+    "shared/workshop-sdk.js": "9ae66b604566b2594aa4acbfa74c56bffcc91870048085354d9a1203606d7aeb",
     "test/workshop/schema.mjs": "ed7bd2026a6b3e2f97779fab7726e2dbb61566396444c2126a1f8092fd2ab382",
-    "test/workshop/schemas/app.schema.json": "6044f87e89978423d80ec6c99e1128badbefdc42148467f213e89133d46effda",
+    "test/workshop/schemas/app.schema.json": "b930c1746574182b87786614ec769e611f19895d80b69db1b53fa146e00a405d",
     "test/workshop/schemas/common.schema.json": "330bc935a85a9ef135cbb382e89e075f59b1a265842f5d07cc55b9dd24ab492d",
     "test/workshop/schemas/data-bundle.schema.json": "18f46205693248fe5317dc21919b23d45dbd1e12964dffcd98eab3ee5065d3de",
     "test/workshop/schemas/data-envelope.schema.json": "457b2e586e2fc5522e7eb01b3b3cb9a21eca2a6b7a1b5e1755afbc572f5dff7a",
@@ -102,6 +103,7 @@
     "test/workshop/schemas/person-group.schema.json": "7ddba893c6aaee2e1c0acc72c1814d47962412867b3f978166f4660868a2a040",
     "test/workshop/schemas/person.schema.json": "4311c304977caa3d5b6f6707ccb8bdd9bec6a0e3b4802e072b76fa5670cb6d6c",
     "test/workshop/schemas/summary-card.schema.json": "f83a35c39a82c651d9b7866caec88e06bf1bbd64f375e74b70e71c049d3a993e",
-    "test/workshop/schemas/team.schema.json": "4d9a224efa52b92a388e93f33d66b35adcf07305cfe408a777300d08432a5e3d"
+    "test/workshop/schemas/team.schema.json": "4d9a224efa52b92a388e93f33d66b35adcf07305cfe408a777300d08432a5e3d",
+    "shared/app-settings.js": "6e9f17c4266f1530eefa1df0a3d2a931f12e99b56b80f913a94f28993c705b85"
   }
 }
